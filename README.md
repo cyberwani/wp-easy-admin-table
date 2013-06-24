@@ -38,7 +38,7 @@ A better example with dynamic data from the database:
 include_once("easy-admin-table.class.php");
 
 global $wpdb;
-$sql = 'SELECT ID, user_login, user_email FROM '.$wpdb->base_prefix.'users';
+$sql = 'SELECT ID, user_login as name, user_email as email FROM '.$wpdb->base_prefix.'users';
 $users = $wpdb->get_results( $sql, ARRAY_A );
 
 new EasyAdminTable($users);
