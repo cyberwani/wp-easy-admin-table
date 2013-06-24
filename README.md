@@ -27,7 +27,7 @@ new EasyAdminTable($dogs);
 ```
 
 
-![dogs.jpg](dogs.jpg)
+![dogs.jpg](docs/dogs.jpg)
 
 
 A better example with dynamic data from the database:
@@ -46,4 +46,4 @@ new EasyAdminTable($users);
 
 will render like this:
 
-![users.jpg](users.jpg)
+![users.jpg](docs/users.jpg)
