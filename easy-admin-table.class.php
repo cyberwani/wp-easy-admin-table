@@ -1,22 +1,39 @@
 <?php
 
+/**
+ * Simplified usage of tables in wordpress plugin admin views.
+ *
+ * See https://github.com/moritzjacobs/wp-easy-admin-table
+ *
+ * @package   EasyAdminTable
+ * @author    Moritz Jacobs <mail@moritzjacobs.de>
+ * @license   GPL-2.0+
+ * @link      http://moritzjacobs.de
+ */
+
+
 class EasyAdminTable extends WP_List_Table {
 
 	private $easy_table_data = array();
 	private $perpage = 30;
 
 	function __construct($data, $perpage = 30) {
+
+		// WP_List_Table isn't available for some reason
 		if(!class_exists('WP_List_Table')){
 			require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 		}
 
 		$this->perpage = $perpage;
 		$this->easy_table_data = $data;
+
 		parent::__construct();
+
 		$this->prepare_items();
 		$this->display();
 	}
 
+	// prepare column names according to array keys (capitalized)
 	function get_columns() {
 		$first_row = $this->easy_table_data[0];
 		$columns = array();
@@ -26,7 +43,7 @@ class EasyAdminTable extends WP_List_Table {
 		return $columns;
 	}
 
-
+	// all columns are sortable by default
 	public function get_sortable_columns() {
 		$first_row = $this->easy_table_data[0];
 		$sortable = array();
@@ -37,6 +54,7 @@ class EasyAdminTable extends WP_List_Table {
 	}
 
 
+	// prepare items for display
 	function prepare_items() {
 		$data = $this->easy_table_data;
 
@@ -56,14 +74,16 @@ class EasyAdminTable extends WP_List_Table {
 
 
 
-
+	// display the table
+	// this is where you would want to modify the code if you want something special
 	function display_rows() {
 
 		$records = $this->items;
 		list( $columns, $hidden ) = $this->get_column_info();
 
 		$record_count = 0;
-		if(!empty($records)){foreach($records as $rec){
+		if(!empty($records)){
+			foreach($records as $rec){
 				$record_count++;
 
 				echo '<tr id="record_'.$record_count.'">';
@@ -79,6 +99,7 @@ class EasyAdminTable extends WP_List_Table {
 				}
 
 				echo'</tr>';
-			}}
+			}
+		}
 	}
 }
