@@ -82,24 +82,26 @@ class EasyAdminTable extends WP_List_Table {
 		list( $columns, $hidden ) = $this->get_column_info();
 
 		$record_count = 0;
-		if(!empty($records)){
-			foreach($records as $rec){
-				$record_count++;
 
-				echo '<tr id="record_'.$record_count.'">';
-				foreach ( $columns as $column_name => $column_display_name ) {
+		foreach($records as $rec){
+			$record_count++;
 
-					$class = "class='$column_name column-$column_name'";
-					$style = "";
-					if ( in_array( $column_name, $hidden ) ) $style = ' style="display:none;"';
-					$attributes = $class . $style;
+			echo '<tr id="record_'.$record_count.'">';
+			
+			foreach ( $columns as $column_name => $column_display_name ) {
 
-					echo '<td '.$attributes.'>'.@$rec[$column_name].'</td>';
+				$class = "class='$column_name column-$column_name'";
+				$style = "";
+				
+				if ( in_array( $column_name, $hidden ) ) $style = ' style="display:none;"';
+				$attributes = $class . $style;
 
-				}
+				echo '<td '.$attributes.'>'.@$rec[$column_name].'</td>';
 
-				echo'</tr>';
 			}
+
+			echo'</tr>';
 		}
+
 	}
 }

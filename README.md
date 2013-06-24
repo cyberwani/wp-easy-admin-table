@@ -10,6 +10,8 @@ Include the class file and instantiate a new `EasyAdminTable($data, $per_page)` 
 
 ### Examples
 
+Column titles are created from the array keys of the first row in your data array. Sanitation of the data array is YOUR responsibility!
+
 The array structure should be like in this example:
 
 ```
