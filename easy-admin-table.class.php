@@ -38,7 +38,7 @@ class EasyAdminTable extends WP_List_Table {
 		$first_row = $this->easy_table_data[0];
 		$columns = array();
 		foreach($first_row as $key=>$value) {
-			$columns[$key] = __(ucfirst($key));
+			$columns[$key] = __(ucwords(str_replace("_", " ", $key)));
 		}
 		return $columns;
 	}
